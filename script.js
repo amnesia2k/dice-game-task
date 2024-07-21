@@ -1,6 +1,6 @@
 'use strict';
 
-// Selecting elements
+// Selecting Elements
 const playerEls = document.querySelectorAll('.player');
 const scoreEls = document.querySelectorAll('.score');
 const currentEls = document.querySelectorAll('.current-score');
@@ -11,7 +11,7 @@ const btnHold = document.querySelector('.btn--hold');
 
 let gameData;
 
-// Initialize game
+// Initialize Game
 const initializeGame = () => {
   gameData = {
     scores: [0, 0],
@@ -22,14 +22,13 @@ const initializeGame = () => {
 
   scoreEls.forEach(el => (el.textContent = 0));
   currentEls.forEach(el => (el.textContent = 0));
-  // diceEl.classList.add('hidden');
   playerEls.forEach(el => el.classList.remove('player--winner', 'player--active'));
   playerEls[0].classList.add('player--active');
 };
 
 initializeGame();
 
-// Switch active player
+// Switch Player
 const switchActivePlayer = () => {
   currentEls[gameData.activePlayer].textContent = 0;
   gameData.currentScore = 0;
@@ -37,11 +36,10 @@ const switchActivePlayer = () => {
   playerEls.forEach(el => el.classList.toggle('player--active'));
 };
 
-// Roll dice functionality
+// Dice Roll
 btnRoll.addEventListener('click', () => {
   if (gameData.playing) {
     const dice = Math.trunc(Math.random() * 6) + 1;
-    // diceEl.classList.remove('hidden');
     diceEl.src = `dice-${dice}.png`;
 
     if (dice !== 1) {
@@ -53,7 +51,7 @@ btnRoll.addEventListener('click', () => {
   }
 });
 
-// Hold score functionality
+// Hold Score
 btnHold.addEventListener('click', () => {
   if (gameData.playing) {
     gameData.scores[gameData.activePlayer] += gameData.currentScore;
@@ -70,5 +68,5 @@ btnHold.addEventListener('click', () => {
   }
 });
 
-// New game functionality
+// New Game
 btnNew.addEventListener('click', initializeGame);
