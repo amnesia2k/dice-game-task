@@ -22,6 +22,7 @@ const initializeGame = () => {
 
   scoreEls.forEach(el => (el.textContent = 0));
   currentEls.forEach(el => (el.textContent = 0));
+  diceEl.classList.add('hidden');
   playerEls.forEach(el => el.classList.remove('player--winner', 'player--active'));
   playerEls[0].classList.add('player--active');
 };
@@ -40,6 +41,7 @@ const switchActivePlayer = () => {
 btnRoll.addEventListener('click', () => {
   if (gameData.playing) {
     const dice = Math.trunc(Math.random() * 6) + 1;
+    diceEl.classList.remove('hidden');
     diceEl.src = `dice-${dice}.png`;
 
     if (dice !== 1) {
